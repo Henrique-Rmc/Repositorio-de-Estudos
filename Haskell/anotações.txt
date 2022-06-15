@@ -1,0 +1,20 @@
+soma :: Int -> Int -> Int
+soma x y = x+y
+
+dobro :: Int -> Int
+dobro x = x * 2
+
+
+Em Haskell para definir uma função precisamos 
+iniciar o nome da função seguido pelos argumentos que vai ultilizar
+por exemplo: 
+
+multiplica :: Int -> Int -> Int
+isso significa que a função Multiplica recebe dois parametros inteiros e retorna um parametro inteiros
+o ultimo parametro passado sempre vai ser o retorno da função
+Por fim precisamos definir o corpo da função
+multiplica x y = x * y
+
+resultado:
+multiplica :: Int -> Int -> Int
+multiplica x y = x * y

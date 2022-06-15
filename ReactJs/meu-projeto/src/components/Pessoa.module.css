@@ -1,0 +1,11 @@
+.PessoaContainer{
+    background-color: grey;
+    border: cadetblue;
+    border-width: 10px;
+}
+
+.PessoaContent{
+    color: goldenrod;
+    background-color: gray;
+    margin: 20px;
+}

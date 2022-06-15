@@ -1,0 +1,10 @@
+.ListContainer{
+    background-color: cadetblue;
+    border: blueviolet;
+}
+
+.ListContent{
+    color: darkgrey;
+    background-color: aquamarine;
+    margin: 10px;
+}
