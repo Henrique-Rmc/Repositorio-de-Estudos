@@ -49,6 +49,8 @@ consumo potencia tempo kw =  consumo * kw + tempo
 
     where consumo = (potencia / 100) * (tempo)
 
+    printf"%.2f\n"("Gasto semanal = R$ " ++ (gasto(consumo(num1 num2) num3)))
+    printf"%.2f\n" ("Gasto diário = R$ " ++ gastoDiario ((consumo (potencia tempo)) custo)  )
 
 main :: IO ()
 main  = putStrLn "hello, world"
