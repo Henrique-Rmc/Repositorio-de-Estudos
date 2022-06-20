@@ -40,7 +40,7 @@ function App() {
   //dentro do array de words temos varias palavras dentro de varios arrays e 
   //cada um desses arrays possui um nome , que será tratado como sua key
 
-  const pickWordAndCategory = useCallback (() =>{
+  const pickWordAndCategory = () =>{
     //const categories retorna um array com todas as chaves de words
     const categories = Object.keys(words)
     //category vai ser atribuído como uma categoria do indice aleatório (obtido por math.random)
@@ -51,22 +51,21 @@ function App() {
      console.log(category)
     //Pega uma palavra aleatória
     const word = words[category][Math.floor(Math.random() * words[category].length )]
-
-    //console.log(word)
+    console.log(word)
 
     return {category, word}
-  }, [words])
+  }
 
 //ao chamar a função, o componente do inicio do jogo é lançado
-  const startGame = useCallback( () =>{
+  const startGame = () =>{
     //pick word and pick category
-    const {category ,word} = pickWordAndCategory()
+    const {word, category} = pickWordAndCategory()
     
     //criando um array de letras
     let wordLetters = word.split('')
     wordLetters = wordLetters.map((l) => l.toLowerCase())
     
-    //console.log(wordLetters)
+    console.log(wordLetters)
 
     //FillStates
     setPickedWord(word)
@@ -74,7 +73,7 @@ function App() {
     setLetters(wordLetters)
 
     setGameStage(stages[1].name)
-  }, [pickWordAndCategory])
+  }
 
 //processa a letra recebida
   const verifyLetter = (letter) =>{
@@ -96,10 +95,11 @@ function App() {
       setWrongLetters((actualWrongLetters) => [
         ...actualWrongLetters,
         normalizedLetter])
-    
-    setGuesses((actualGuesses) => actualGuesses - 1);
-      }
+    }
+
+
   }
+
 
 
 //reinicia o Jogo/ reseta todos os status
@@ -111,8 +111,7 @@ function App() {
   return (
     <div className="App">
       {gameStage === 'start' && <StartScreen startGame = {startGame}/>}
-      {gameStage === 'game' && (
-    <Game 
+      {gameStage === 'game' && <Game 
       verifyLetter = {verifyLetter}
         pickedWord = {pickedWord}
         pickedCategory = {pickedCategory}
@@ -120,8 +119,7 @@ function App() {
         guessedLetters = {guessedLetters}
         wrongLetters = {wrongLetters}
         score = {score}
-        />
-         )}
+        /> }
       {gameStage === 'end' && <GameOver reTry = {reTry}/>}
      </div>
      
