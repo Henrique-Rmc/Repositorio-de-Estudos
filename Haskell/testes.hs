@@ -54,3 +54,18 @@ consumo potencia tempo kw =  consumo * kw + tempo
 
 main :: IO ()
 main  = putStrLn "hello, world"
+
+
+
+lendoNentradas 0 = return []
+lendoNentradas count = readLn >>= \p -> lendoNentradas (count -1 ) >>= \e -> return (p : e)
+
+
+
+teste :: Int -> Bool
+teste soma = if (soma) <= 2160 then True else False
+
+
+comp :: (Eq a) => a -> [a] -> Bool
+comp _ [] = False
+comp e (x:xs) = (e == x) || (comp e xs)

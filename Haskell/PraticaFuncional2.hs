@@ -1,38 +1,22 @@
-lendoNentradas 0 = return []
-lendoNentradas count = readLn >>= \p -> lendoNentradas (count -1 ) >>= \e -> return (p : e)
+somaMusicas :: Int -> Int -> Int -> IO()
+somaMusicas 0 soma tempoTotal = print soma
 
 
-soma :: [Int] -> Int
-soma [] = 0
-soma (x:xs) = x + soma xs
+somaMusicas qtdMusicas soma tempoTotal = do
+    input1 <- getLine
+    let segundosMusica = read input1 :: Int
 
-teste :: Int -> Bool
-teste soma = if (soma) <= 2160 then True else False
+    if(tempoTotal - segundosMusica) >= 0 
+        then somaMusicas (qtdMusicas - 1) (soma + 1 ) (tempoTotal - segundosMusica ) 
+  
+    else somaMusicas 0 soma (tempoTotal - segundosMusica ) 
 
-sub :: Int ->Int -> Int
-sub e = e 
-
-comp :: (Eq a) => a -> [a] -> Bool
-comp _ [] = False
-comp e (x:xs) = (e == x) || (comp e xs)
-
-qtd :: Int -> Int -> [Int] -> Int
-qtd e f (x:xs)
-    |   _ [] = 0
-    |   sub >= 0 qtd sub (f+1) xs
-    |   otherwise = f
-    where sub = e - x
-
-
-main :: IO()
 main  = do
-    putStr "Numero de Entradas: "
-    n <- readLn
-    lista <- lendoNentradas n
+
+    inputx <- getLine
+
+    let musicas = read inputx :: Int
 
 
-    putStrLn $ "Total de carac: " ++ show (soma lista)
-    
-    putStrLn $ "teste " ++ show (teste n) 
 
-    putStrLn $ "teste comparador " ++ show (comp 228 lista) 
+    somaMusicas  musicas 0 2160   

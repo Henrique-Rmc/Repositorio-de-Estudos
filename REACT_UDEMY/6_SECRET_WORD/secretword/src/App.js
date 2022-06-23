@@ -13,12 +13,36 @@ import { wordsList } from "./components/data/words"
 //REACT
 import {useCallback, useEffect, useState} from "react"
 
-
+/*
+São definidos os estágios com os quais o sistema vai interagir
+Cada estágio chama um componente.
+*/
 const stages = [
   { id: 1, name: "start" },
   { id: 2, name: "game" },
   { id: 3, name: "end" },
 ];
+
+/*
+Antes de iniciar o nosso retorno , devemos definir as const e suas manipulaçoes
+*******const [gameStage, setGameStage] = useState(stages[0].name);*********
+        Essa constante atribui um useState oara o gameStage, o useState permite que a constante seja redefinida
+        gameStage começa com o estágio 0 que é o ponto inicial/ tela inicial
+
+*******const [words] = useState(wordsList);***************
+        Essa constante recebe uma lista de palavras através de um useState. Essa lista de palavras vem de um arquivo em Data que foi importado
+
+
+*******
+
+
+*******
+
+
+
+*******
+
+*/
 
 function App() {
   const [gameStage, setGameStage] = useState(stages[0].name);
@@ -35,18 +59,33 @@ function App() {
 
   console.log(words);
 
+
+/********
+ ********const pickWordAndCategory = useCallback(()
+          useCallBack() -- Em JS cada vez que uma função é chamada existe uma representação diferente
+                        -- Para evitar que esse componente seja re-renderizado a todo momento, usamos o useCallBack que indica que estamos usando aquela msm estrutura
+ *        Essa constante recebe como parametro uma função
+ *        -essa função define a constante categories que é uma lista de palavras que recebe as chaves das palavras recebidas em words através das importações
+ *         
+ */
   const pickWordAndCategory = useCallback(() => {
-    // pick a random category
+
+    // A constante categories é um array com as keys do array words, ou seja, as categorias de cada lista de palavra
+
+    // A constante category usa de funções matematicas para gerar um numero aleatorio que será o índice da categoria que escolheremos
     const categories = Object.keys(words);
     const category =
       categories[Math.floor(Math.random() * Object.keys(categories).length)];
 
     // pick a random word
+    //A constante word vai receber uma palavra da categoria definida anteriormente em category
+    //como podemos ver: word = words[category]
     const word =
       words[category][Math.floor(Math.random() * words[category].length)];
 
     console.log(category, word);
 
+    //a função pickWordAndCategory retorna uma categoria e uma palavra
     return { category, word };
   }, [words]);
 
